@@ -1,4 +1,4 @@
-public class Song {
+class Song {
     private String title;
     private int duration;
     private Artist artist;
@@ -9,35 +9,33 @@ public class Song {
         this.artist = artist;
     }
 
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public int getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
     public Artist getArtist() {
         return artist;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    @Override
+    public String toString() {
+        return title + " (" + duration + " sec) - " + artist.getName();
     }
 
-    public void displaySong() {
-        System.out.println(
-                "Song: " + title + ", Duration: " + duration + " sec, Artist: " + artist.getName()
-        );
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Song)) return false;
+        Song song = (Song) o;
+        return title.equals(song.title);
     }
 
+    @Override
+    public int hashCode() {
+        return title.hashCode();
+    }
 }

@@ -1,11 +1,9 @@
-public class Artist { private String name;
-    private String genre;
+abstract class Artist {
+    private String name;
 
-    public Artist(String name, String genre) {
+    public Artist(String name) {
         this.name = name;
-        this.genre = genre;
     }
-
 
     public String getName() {
         return name;
@@ -15,15 +13,24 @@ public class Artist { private String name;
         this.name = name;
     }
 
-    public String getGenre() {
-        return genre;
+    // Polymorphism
+    public abstract String getType();
+
+    @Override
+    public String toString() {
+        return "Artist: " + name;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Artist)) return false;
+        Artist artist = (Artist) obj;
+        return name.equals(artist.name);
     }
 
-    public void displayArtist() {
-        System.out.println("Artist: " + name + ", Genre: " + genre);
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

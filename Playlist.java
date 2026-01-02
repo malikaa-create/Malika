@@ -1,33 +1,44 @@
-public class Playlist {
+import java.util.*;
+
+class Playlist {
     private String name;
-    private Song song;
+    private List<Song> songs = new ArrayList<>();
 
-    public Playlist(String name, Song song) {
-        this.name = name;
-        this.song = song;
-    }
-
-    // Getters and Setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Playlist(String name) {
         this.name = name;
     }
 
-    public Song getSong() {
-        return song;
+    public void addSong(Song song) {
+        songs.add(song);
     }
 
-    public void setSong(Song song) {
-        this.song = song;
+    // Filtering
+    public void filterByArtist(String artistName) {
+        for (Song s : songs) {
+            if (s.getArtist().getName().equalsIgnoreCase(artistName)) {
+                System.out.println(s);
+            }
+        }
     }
 
-    public void displayPlaylist() {
-        System.out.println("Playlist: " + name);
-        song.displaySong();
+    // Sorting
+    public void sortByDuration() {
+        songs.sort(Comparator.comparingInt(Song::getDuration));
+    }
+
+    // Searching
+    public Song searchByTitle(String title) {
+        for (Song s : songs) {
+            if (s.getTitle().equalsIgnoreCase(title)) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public void display() {
+        for (Song s : songs) {
+            System.out.println(s);
+        }
     }
 }
-
-

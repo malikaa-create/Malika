@@ -1,25 +1,36 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-        Artist artist1 = new Artist("Adele", "Pop");
-        Artist artist2 = new Artist("The Weeknd", "R&B");
+        Scanner scanner = new Scanner(System.in);
 
-        Song song1 = new Song("Love Song", 300, artist1);
-        Song song2 = new Song("Blinding Lights", 200, artist2);
+        Artist artist1 = new MusicArtist("Adele");
+        Artist artist2 = new MusicArtist("The Weeknd");
 
-        Playlist playlist1 = new Playlist("My Favorites", song1);
-        Playlist playlist2 = new Playlist("Top Hits", song2);
+        Song s1 = new Song("Hello", 300, artist1);
+        Song s2 = new Song("Easy On Me", 290, artist1);
+        Song s3 = new Song("Blinding Lights", 200, artist2);
 
-        playlist1.displayPlaylist();
-        System.out.println();
-        playlist2.displayPlaylist();
+        Playlist playlist = new Playlist("My Music");
+        playlist.addSong(s1);
+        playlist.addSong(s2);
+        playlist.addSong(s3);
 
-        System.out.println("\nComparison:");
-        if (song1.getDuration() > song2.getDuration()) {
-            System.out.println(song1.getTitle() + " is longer than " + song2.getTitle());
-        } else {
-            System.out.println(song2.getTitle() + " is longer than " + song1.getTitle());
-        }
+        System.out.println("\nAll songs:");
+        playlist.display();
+
+        System.out.println("\nSorted by duration:");
+        playlist.sortByDuration();
+        playlist.display();
+
+        System.out.println("\nSearch song title:");
+        String title = scanner.nextLine();
+        Song found = playlist.searchByTitle(title);
+        System.out.println(found != null ? found : "Song not found");
+
+        System.out.println("\nFilter by artist:");
+        String artistName = scanner.nextLine();
+        playlist.filterByArtist(artistName);
     }
 }
-
