@@ -1,3 +1,5 @@
+package com;
+
 abstract class Artist {
     private String name;
 
@@ -18,7 +20,7 @@ abstract class Artist {
 
     @Override
     public String toString() {
-        return "Artist: " + name;
+        return "com.Artist: " + name;
     }
 
     @Override

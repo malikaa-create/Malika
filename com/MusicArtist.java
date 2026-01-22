@@ -1,3 +1,5 @@
+package com;
+
 class MusicArtist extends Artist {
 
     public MusicArtist(String name) {
@@ -6,6 +8,6 @@ class MusicArtist extends Artist {
 
     @Override
     public String getType() {
-        return "Music Artist";
+        return "Music com.Artist";
     }
 }
